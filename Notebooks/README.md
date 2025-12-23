@@ -1,41 +1,52 @@
 # Notebooks
 
-This folder contains the Jupyter notebooks used for development, training, evaluation, and demonstration of the proposed two-stage breast cancer analysis framework.
+This folder contains the Jupyter notebooks used to implement, train, evaluate, and demonstrate the proposed **two-stage breast cancer analysis system**.
 
-Each notebook is modular and corresponds to a specific stage or function within the pipeline.
+Each notebook is self-contained and corresponds to a specific functional stage of the pipeline.
 
 ---
 
-## Notebook Overview
+## Notebook List and Description
 
-### Stage-1 Screening
-- Implements the screening model for Normal vs Abnormal classification
-- Includes data loading, preprocessing, training, and evaluation
+### 1. Stage1_Screening_Normal_vs_Abnormal.ipynb
+- Implements **Stage-1 screening**
+- Performs binary classification: **Normal vs Abnormal**
 - Designed for high-sensitivity screening
-
-### Stage-2 Multimodal Diagnosis
-- Implements the diagnostic model for Benign vs Malignant classification
-- Integrates mammogram images, ultrasound images, and clinical metadata
-- Uses attention-based late fusion for multimodal learning
-
-### Gradio Demo
-- Deploys the complete system using a web-based interface
-- Supports image upload and real-time inference
-- Visualizes predictions and model attention outputs
+- Uses EfficientNet-B0 as the backbone
+- Combines mammogram and ultrasound data using unified screening labels
+- Outputs a trained screening model
 
 ---
 
-## Notes
-- Notebooks are structured for execution in Google Colab
-- File paths are relative and configurable
-- Model weights are loaded from the `models` directory
+### 2. Stage2_Multimodal_Diagnosis.ipynb
+- Implements **Stage-2 diagnostic classification**
+- Performs binary classification: **Benign vs Malignant**
+- Uses multimodal inputs:
+  - Mammogram images (EfficientNet-B0)
+  - Ultrasound images (MobileNetV3-Small)
+  - Clinical metadata (Age and BIRADS)
+- Employs **attention-based late fusion** to weight modality contributions
+- Outputs a trained multimodal diagnostic model
 
 ---
 
-## Usage
-Notebooks may be executed independently or sequentially depending on the experimental requirements.
+### 3. Demo_GradCAM_Gradio.ipynb
+- Demonstrates the complete two-stage pipeline
+- Integrates trained Stage-1 and Stage-2 models
+- Provides an interactive **Gradio web interface**
+- Visualizes spatial model attention using **Grad-CAM++**
+- Displays modality importance through attention weights
+- Generates human-readable explanations of model focus
+
+---
+
+## Execution Notes
+- Notebooks are designed to run on **Google Colab**
+- GPU acceleration is used when available
+- File paths assume a consistent project directory structure
 
 ---
 
 ## Disclaimer
-These notebooks are intended for **academic and research purposes only** and are not designed for clinical deployment.
+These notebooks are developed for **academic and research purposes only** and are not intended for clinical use.
+
